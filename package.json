@@ -1,6 +1,7 @@
 {
   "name": "obsidian-i-chat",
   "version": "0.2.2",
+  "license": "MIT",
   "description": "Chat with AI models directly in Obsidian with BYOK (Google AI & OpenAI Compatible), @ note mentions, Gemini web search, streaming, collapsible thinking, attachments, prompt-model binding, auto titles, and Markdown chat notes.",
   "main": "main.js",
   "scripts": {
