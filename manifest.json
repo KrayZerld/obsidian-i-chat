@@ -1,0 +1,9 @@
+{
+  "id": "obsidian-i-chat",
+  "name": "i-Chat",
+  "version": "0.2.2",
+  "minAppVersion": "1.11.0",
+  "description": "Chat with AI models directly in Obsidian with BYOK (Google AI & OpenAI Compatible), @ note mentions, Gemini web search, streaming, collapsible thinking, attachments, prompt-model binding, auto titles, and Markdown chat notes.",
+  "author": "KrayZerld & Geminyan",
+  "isDesktopOnly": true
+}

@@ -1,0 +1,1191 @@
+/* obsidian-i-chat - Built on Obsidian default theme CSS variables */
+
+.ichat-view {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  background-color: var(--background-primary);
+  color: var(--text-normal);
+  overflow: hidden;
+}
+
+/* ===== Drag & Drop Overlay ===== */
+
+.ichat-drop-overlay {
+  position: absolute;
+  inset: 10px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--interactive-accent);
+  border-radius: var(--radius-m);
+  background-color: color-mix(in srgb, var(--background-primary) 82%, transparent);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.ichat-view.is-drag-over .ichat-drop-overlay {
+  opacity: 1;
+}
+
+.ichat-drop-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-m);
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  color: var(--text-normal);
+  font-size: var(--font-ui-medium);
+}
+
+.ichat-drop-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--interactive-accent);
+}
+
+.ichat-drop-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== Shared native clickable-icon & selector buttons ===== */
+
+.ichat-icon-btn {
+  padding: 4px 6px;
+  min-height: 26px;
+  height: auto;
+  transition: color 120ms ease, opacity 120ms ease, background-color 120ms ease;
+}
+
+.ichat-selector-btn,
+.ichat-thinking-toggle,
+.ichat-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-small);
+  line-height: 1.45;
+  height: auto !important;
+  min-height: 26px;
+  transition: color 120ms ease, opacity 120ms ease, background-color 120ms ease;
+}
+
+.ichat-selector-btn:hover {
+  background-color: var(--background-modifier-hover) !important;
+  color: var(--text-normal);
+}
+
+.ichat-thinking-toggle:hover,
+.ichat-link-btn:hover,
+.ichat-chip-remove:hover {
+  background: transparent !important;
+  color: var(--text-normal);
+}
+
+.ichat-danger-btn:hover {
+  color: var(--text-error);
+}
+
+.ichat-icon-btn svg,
+.ichat-selector-btn svg,
+.ichat-thinking-toggle svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 1.8;
+}
+
+.ichat-send-btn.is-idle {
+  color: var(--text-faint);
+  opacity: 0.6;
+}
+
+.ichat-send-btn.is-idle:hover {
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.ichat-send-btn.is-ready {
+  color: var(--interactive-accent);
+  opacity: 1;
+}
+
+.ichat-send-btn.is-ready:hover {
+  color: var(--interactive-accent-hover);
+}
+
+.ichat-send-btn.is-streaming {
+  color: var(--text-error);
+  opacity: 1;
+}
+
+.ichat-chevron {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ichat-chevron svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ===== Messages Area ===== */
+
+.ichat-messages {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 20px 16px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ichat-messages-inner {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ichat-empty-state {
+  margin: auto;
+  text-align: center;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 24px;
+}
+
+.ichat-empty-icon svg {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+}
+
+.ichat-empty-title {
+  font-size: var(--font-ui-medium);
+  font-weight: 500;
+  color: var(--text-normal);
+}
+
+.ichat-empty-sub {
+  font-size: var(--font-ui-small);
+  color: var(--text-faint);
+}
+
+.ichat-message {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ichat-message-user {
+  align-items: flex-end;
+}
+
+.ichat-message-user:not(:first-child) {
+  margin-top: 18px;
+}
+
+.ichat-message-assistant {
+  align-items: flex-start;
+}
+
+.ichat-message-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 88%;
+}
+
+.ichat-bubble {
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
+  max-width: 100%;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.ichat-bubble * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ichat-bubble.markdown-rendered button,
+.ichat-bubble.markdown-rendered a {
+  cursor: pointer;
+}
+
+.ichat-bubble.markdown-rendered pre > button.copy-code-button,
+.ichat-thinking-content.markdown-rendered pre > button.copy-code-button {
+  z-index: 2;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+.ichat-bubble-user {
+  max-width: 85%;
+  padding: 9px 14px;
+  border-radius: 14px;
+  background-color: var(--background-secondary);
+  border: 1px solid color-mix(in srgb, var(--background-modifier-border) 55%, transparent);
+}
+
+.ichat-bubble-user.markdown-rendered p {
+  margin: 0.35em 0;
+}
+
+.ichat-bubble-assistant {
+  width: 100%;
+  padding: 2px 0;
+  line-height: 1.65;
+}
+
+/* Balanced Markdown rhythm inside bubbles */
+.ichat-bubble-assistant.markdown-rendered p {
+  margin: 0.72em 0;
+}
+
+.ichat-bubble-assistant.markdown-rendered ul,
+.ichat-bubble-assistant.markdown-rendered ol {
+  margin: 0.45em 0;
+  padding-left: 1.5em;
+}
+
+.ichat-bubble-assistant.markdown-rendered li {
+  margin: 0.28em 0;
+}
+
+.ichat-bubble-assistant.markdown-rendered li > p {
+  margin: 0.2em 0;
+}
+
+.ichat-bubble-assistant.markdown-rendered li > ul,
+.ichat-bubble-assistant.markdown-rendered li > ol {
+  margin: 0.22em 0;
+}
+
+.ichat-bubble.markdown-rendered code,
+.ichat-bubble.markdown-rendered pre,
+.ichat-bubble.markdown-rendered pre code,
+.ichat-thinking-content.markdown-rendered code,
+.ichat-thinking-content.markdown-rendered pre,
+.ichat-thinking-content.markdown-rendered pre code {
+  font-family:
+    var(--font-monospace-override, "Cascadia Mono"),
+    var(--font-monospace-theme, "Consolas"),
+    "Cascadia Mono",
+    "SFMono-Regular",
+    "Roboto Mono",
+    "Consolas",
+    "Menlo",
+    "Monaco",
+    var(--font-text),
+    var(--font-interface),
+    monospace;
+}
+
+.ichat-bubble.markdown-rendered pre,
+.ichat-thinking-content.markdown-rendered pre {
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0.65em 0;
+  border-radius: var(--radius-m);
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.ichat-bubble.markdown-rendered pre:has(> code),
+.ichat-thinking-content.markdown-rendered pre:has(> code) {
+  overflow: hidden;
+  padding: 0;
+}
+
+.ichat-bubble.markdown-rendered pre > code,
+.ichat-thinking-content.markdown-rendered pre > code {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  padding: var(--size-4-3, 12px) var(--size-4-4, 16px);
+  background-color: transparent;
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: pre;
+}
+
+.ichat-bubble-assistant.markdown-rendered blockquote {
+  margin: 0.55em 0;
+}
+
+.ichat-bubble-assistant.markdown-rendered h1,
+.ichat-bubble-assistant.markdown-rendered h2,
+.ichat-bubble-assistant.markdown-rendered h3,
+.ichat-bubble-assistant.markdown-rendered h4 {
+  margin: 0.85em 0 0.35em;
+  line-height: 1.35;
+}
+
+.ichat-bubble.markdown-rendered > :first-child {
+  margin-top: 0;
+}
+
+.ichat-bubble.markdown-rendered > :last-child {
+  margin-bottom: 0;
+}
+
+.ichat-thinking-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  line-height: 1.4;
+  user-select: none;
+}
+
+.ichat-thinking-sparkle {
+  display: inline-flex;
+  align-items: center;
+  color: var(--interactive-accent);
+  animation: ichat-sparkle-breathe 1.6s ease-in-out infinite;
+}
+
+.ichat-thinking-sparkle svg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes ichat-sparkle-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.ichat-message-footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.ichat-message:hover .ichat-message-footer,
+.ichat-message:focus-within .ichat-message-footer,
+.ichat-message-footer:has(.is-copied) {
+  opacity: 1;
+}
+
+.ichat-footer-user {
+  justify-content: flex-end;
+}
+
+.ichat-footer-assistant {
+  justify-content: flex-start;
+}
+
+.ichat-msg-action {
+  padding: 2px 3px;
+  opacity: 0.7;
+  transition: opacity 140ms ease, color 120ms ease;
+}
+
+.ichat-msg-action:hover,
+.ichat-msg-action:focus-visible,
+.ichat-msg-action.is-copied {
+  opacity: 1;
+}
+
+.ichat-msg-action svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ichat-msg-action.is-copied {
+  color: var(--interactive-accent);
+  animation: ichat-copy-pop 220ms ease;
+}
+
+@keyframes ichat-copy-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ichat-timestamp {
+  font-variant-numeric: tabular-nums;
+  user-select: text;
+}
+
+/* ===== Collapsible Thinking Block ===== */
+
+.ichat-thinking-host,
+.ichat-error-host {
+  width: 100%;
+}
+
+.ichat-thinking-host:empty,
+.ichat-error-host:empty {
+  display: none;
+}
+
+.ichat-thinking-box {
+  width: 100%;
+  border-left: 2px solid var(--background-modifier-border);
+  padding-left: 8px;
+  margin-bottom: 4px;
+}
+
+.ichat-thinking-toggle {
+  padding: 2px 0;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.ichat-thinking-chevron {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ichat-thinking-chevron svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ichat-thinking-content {
+  margin-top: 4px;
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+  max-height: 280px;
+  overflow-y: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.ichat-thinking-content * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ichat-thinking-content.markdown-rendered p {
+  margin: 0.4em 0;
+}
+
+.ichat-thinking-content.markdown-rendered > :first-child {
+  margin-top: 0;
+}
+
+.ichat-thinking-content.markdown-rendered > :last-child {
+  margin-bottom: 0;
+}
+
+.ichat-error-banner {
+  margin-top: 4px;
+  padding: 6px 10px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--text-error);
+  color: var(--text-error);
+  font-size: var(--font-ui-small);
+}
+
+/* ===== Composer Area ===== */
+
+.ichat-composer {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 6px 16px 14px;
+  background-color: var(--background-primary);
+}
+
+.ichat-composer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -20px;
+  height: 20px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--background-primary));
+}
+
+.ichat-scroll-bottom-btn {
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  z-index: 10;
+  width: 30px;
+  height: 30px !important;
+  min-height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--background-secondary) !important;
+  border: 1px solid var(--background-modifier-border) !important;
+  box-shadow: var(--shadow-s) !important;
+  color: var(--text-muted);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(6px);
+  transition: opacity 160ms ease, transform 160ms ease, color 120ms ease, background-color 120ms ease;
+}
+
+.ichat-scroll-bottom-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.ichat-scroll-bottom-btn:hover {
+  background-color: var(--background-modifier-hover) !important;
+  color: var(--text-normal);
+}
+
+.ichat-composer-inner {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 12px 14px 8px;
+  border-radius: 14px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  box-shadow: var(--shadow-s);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.ichat-composer-inner:focus-within {
+  border-color: var(--background-modifier-border-hover, var(--interactive-accent));
+}
+
+.ichat-composer .ichat-attachment-chip {
+  background-color: var(--background-primary);
+}
+
+.ichat-hidden-file-input {
+  display: none;
+}
+
+.ichat-attachments-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ichat-attachments-bar.is-hidden {
+  display: none;
+}
+
+.ichat-attachment-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border);
+  background-color: var(--background-secondary);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-normal);
+  max-width: 200px;
+}
+
+.ichat-attachment-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ichat-chip-remove {
+  padding: 0;
+}
+
+.ichat-chip-remove svg {
+  width: 12px;
+  height: 12px;
+}
+
+.ichat-input {
+  width: 100%;
+  resize: none;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--text-normal);
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-medium);
+  line-height: 1.5;
+  padding: 2px 0;
+  min-height: 24px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.ichat-input::placeholder {
+  color: var(--text-faint);
+}
+
+.ichat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ichat-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ichat-toolbar-left {
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+}
+
+.ichat-toolbar-right {
+  flex: 0 0 auto;
+}
+
+.ichat-toolbar-divider {
+  width: 1px;
+  height: 14px;
+  margin: 0 4px;
+  background-color: var(--background-modifier-border);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.ichat-selector-btn {
+  max-width: 240px;
+  padding: 4px 5px;
+  line-height: 1.4;
+}
+
+.ichat-selector-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+  padding: 1px 0;
+}
+
+.ichat-selector-thinking {
+  flex-shrink: 0;
+  color: var(--text-faint);
+  opacity: 0.8;
+  line-height: 1.4;
+  padding: 1px 0;
+  transition: color 120ms ease, opacity 120ms ease;
+}
+
+.ichat-selector-btn:hover .ichat-selector-thinking {
+  color: var(--text-muted);
+  opacity: 0.9;
+}
+
+/* ===== Popovers (Model / Agent) ===== */
+
+.ichat-popover {
+  position: fixed;
+  z-index: var(--layer-popover, 1000);
+  width: 280px;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-s);
+  overflow: hidden;
+}
+
+.ichat-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  gap: 8px;
+}
+
+.ichat-popover-title {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.ichat-thinking-group {
+  display: inline-flex;
+  gap: 2px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  padding: 2px;
+}
+
+.ichat-thinking-group.is-muted {
+  opacity: 0.55;
+}
+
+.ichat-thinking-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 2px 7px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+}
+
+.ichat-thinking-btn:hover {
+  color: var(--text-normal);
+}
+
+.ichat-thinking-btn.is-active {
+  background-color: var(--background-modifier-hover) !important;
+  color: var(--text-normal);
+  font-weight: 500;
+}
+
+.ichat-popover-search {
+  padding: 8px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.ichat-popover-search .search-input-container,
+.ichat-history-search .search-input-container {
+  width: 100%;
+}
+
+.ichat-popover-search .search-input-container input,
+.ichat-history-search .search-input-container input {
+  width: 100%;
+}
+
+.ichat-popover-body {
+  overflow-y: auto;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ichat-model-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 4px;
+}
+
+.ichat-model-group-label {
+  padding: 4px 8px 2px;
+  font-size: var(--font-ui-smaller);
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+.ichat-popover-item {
+  width: 100%;
+  height: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: var(--radius-s);
+  color: var(--text-normal);
+  text-align: left;
+  cursor: pointer;
+  font-size: var(--font-ui-small);
+  line-height: 1.45;
+}
+
+.ichat-popover-item:hover {
+  background-color: var(--background-modifier-hover) !important;
+}
+
+.ichat-popover-item.is-selected {
+  color: var(--interactive-accent);
+  font-weight: 500;
+}
+
+.ichat-popover-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ichat-popover-item-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.45;
+  padding: 1px 0;
+}
+
+.ichat-popover-item-sub {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.ichat-popover-check {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ichat-popover-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ichat-popover-empty {
+  padding: 14px 10px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ichat-link-btn {
+  color: var(--interactive-accent);
+}
+
+/* ===== Capability Badges ===== */
+
+.ichat-capability-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ichat-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  background-color: var(--background-secondary);
+}
+
+/* ===== History Modal ===== */
+
+.ichat-history-search {
+  margin-bottom: 10px;
+}
+
+.ichat-history-list {
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ichat-history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-s);
+  border: 1px solid transparent;
+}
+
+.ichat-history-item:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.ichat-history-item.is-selected {
+  border-color: var(--background-modifier-border);
+  background-color: var(--background-secondary);
+}
+
+.ichat-history-item-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.ichat-history-item-title {
+  font-size: var(--font-ui-medium);
+  color: var(--text-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ichat-history-item-time {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.ichat-history-item-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.ichat-rename-input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ===== Settings Tabs & BYOK ===== */
+
+.ichat-settings-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  margin-bottom: 16px;
+}
+
+.ichat-settings-tab {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  padding: 8px 16px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: var(--font-ui-medium);
+}
+
+.ichat-settings-tab:hover {
+  color: var(--text-normal);
+}
+
+.ichat-settings-tab.is-active {
+  color: var(--interactive-accent);
+  border-bottom-color: var(--interactive-accent) !important;
+  font-weight: 500;
+}
+
+.ichat-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: var(--text-faint);
+}
+
+.ichat-status-dot.is-ok {
+  background-color: var(--color-green, #2ea043);
+}
+
+.ichat-status-dot.is-err {
+  background-color: var(--color-red, #e5534b);
+}
+
+.ichat-key-input {
+  width: 210px;
+}
+
+.ichat-baseurl-input {
+  width: 280px;
+}
+
+.ichat-baseurl-input::placeholder {
+  color: var(--text-faint);
+  opacity: 0.65;
+}
+
+.ichat-test-btn.is-testing svg {
+  animation: ichat-spin 1s linear infinite;
+}
+
+@keyframes ichat-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ichat-models-group {
+  margin-top: 20px;
+}
+
+.ichat-models-search {
+  width: 200px;
+}
+
+.ichat-models-empty {
+  padding: 20px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+}
+
+.ichat-model-setting .setting-item-control {
+  gap: 10px;
+}
+
+.ichat-model-id {
+  font-family: var(--font-monospace);
+}
+
+/* ===== v0.2: Web Search Toggle & Sources ===== */
+
+.ichat-websearch-btn.is-hidden {
+  display: none;
+}
+
+.ichat-websearch-btn.is-active {
+  color: var(--interactive-accent);
+}
+
+.ichat-websearch-btn.is-active:hover {
+  color: var(--interactive-accent-hover, var(--interactive-accent));
+}
+
+.ichat-sources-host {
+  width: 100%;
+}
+
+.ichat-sources-box {
+  margin-top: 6px;
+}
+
+.ichat-sources-globe {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.ichat-sources-globe svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ichat-sources-list {
+  margin-top: 4px;
+  padding-left: 14px;
+  border-left: 2px solid var(--background-modifier-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ichat-source-link {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.ichat-source-link:hover {
+  color: var(--text-accent, var(--interactive-accent));
+  text-decoration: underline;
+}
+
+/* ===== v0.2: @ Mention Popover ===== */
+
+.ichat-mention-popover {
+  max-height: 300px;
+}
+
+.ichat-mention-item {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.ichat-mention-item.is-active {
+  background-color: var(--background-modifier-hover) !important;
+  color: var(--text-normal);
+}
+
+.ichat-mention-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.ichat-mention-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ichat-mention-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ichat-mention-active-badge {
+  color: var(--interactive-accent);
+  border-color: var(--interactive-accent);
+  flex-shrink: 0;
+}
