@@ -51,6 +51,10 @@ jobs:
             fi
           done
 
+      - name: Package release zip
+        shell: bash
+        run: zip -j "${{ github.event.repository.name }}.zip" main.js manifest.json styles.css
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -59,6 +63,7 @@ jobs:
           prerelease: ${{ contains(github.ref_name, '-') }}
           generate_release_notes: true
           files: |
+            ${{ github.event.repository.name }}.zip
             main.js
             manifest.json
             styles.css
