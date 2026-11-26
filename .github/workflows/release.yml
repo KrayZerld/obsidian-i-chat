@@ -1,0 +1,64 @@
+name: Release Obsidian Plugin
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Verify tag matches manifest.json version
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          MANIFEST_VER=$(node -p "require('./manifest.json').version")
+          if [ "$TAG" != "$MANIFEST_VER" ]; then
+            echo "::error::Tag '$TAG' does not match manifest.json version '$MANIFEST_VER'. Obsidian requires release tags without a leading 'v'."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Verify release assets
+        shell: bash
+        run: |
+          for file in main.js manifest.json styles.css; do
+            if [ ! -f "$file" ]; then
+              echo "::error::Missing required release asset: $file"
+              exit 1
+            fi
+          done
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          generate_release_notes: true
+          files: |
+            main.js
+            manifest.json
+            styles.css
